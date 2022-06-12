@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gg-app-p3
+  namespace: app
+  labels:
+    app: gg-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gg-app
+  template:
+    metadata:
+      labels:
+        app: gg-app
+    spec:
+      containers:
+      - name: gg-app
+        image: liman.ordulu.com/ulak/app:test
+        imagePullPolicy: Always
+        ports:
+        - name: gg-app-tcp
+          containerPort: 8585
+          protocol: TCP
+      imagePullSecrets:
+        - name: gg

@@ -1,0 +1,31 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    creationTimestamp: "2022-01-18T15:27:56Z"
+    generation: 1
+    name: gg-app.local
+    namespace: app
+    resourceVersion: "54155271"
+    uid: 284f683f-4e20-4b25-80ca-19dc2db2c624
+  spec:
+    rules:
+    - host: gg-app.local
+      http:
+        paths:
+        - backend:
+            service:
+              name: gg-app-service
+              port:
+                number: 8585
+          path: /
+          pathType: Prefix
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

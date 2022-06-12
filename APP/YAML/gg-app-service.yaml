@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gg-app-service
+  namespace: app
+  labels:
+    app: gg-app
+spec:
+  type: NodePort
+#  clusterIP: 10.108.253.1
+  ports:
+  - port: 8585
+    targetPort: 8585
+    protocol: TCP
+    name: gg-app-tcp
+  selector:
+    app: gg-app

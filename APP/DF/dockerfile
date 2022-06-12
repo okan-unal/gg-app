@@ -1,0 +1,10 @@
+ FROM centos:7
+ MAINTAINER "okanunal" <okanunall@hotmail.com>
+ RUN yum update -y && yum -y install yum-utils && yum -y groupinstall development && yum -y install https://repo.ius.io/ius-release-el7.rpm
+ RUN yum install -y python36u
+ COPY ./APP /APP
+ RUN pip3 install flask_table
+ RUN pip3 install pymysql
+ RUN pip3 install flask-mysql
+ EXPOSE 8585
+ CMD [ "python3", "./APP/main.py" ]

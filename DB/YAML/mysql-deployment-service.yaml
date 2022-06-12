@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-db-service
+  namespace: db
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: app-db
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-db
+  namespace: db
+spec:
+  selector:
+    matchLabels:
+      app: app-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: app-db
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: app-db
+        env:
+          # Use secret in real usage
+        - name: MYSQL_ROOT_PASSWORD
+          value: whisper
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+

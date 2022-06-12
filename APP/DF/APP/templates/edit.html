@@ -1,0 +1,20 @@
+<doctype html>
+<title>Kullaniciyi Duzenle - Python Flask MySQL CRUD</title>
+<h2>Kullaniciyi Duzenle</h2>
+<form method="post" action="/update">
+    <dl>
+		<p>
+			<input name="inputName" value="{{ row['user_name'] }}" type="text" placeholder="İsim" autocomplete="off" required>
+		</p>
+		<p>
+			<input name="inputEmail" value="{{ row['user_email'] }}" type="text" placeholder="Mail-Adresi" autocomplete="off" required>
+		</p>
+		<p>
+			<input name="inputPassword" value="" type="password" placeholder="Parola" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input name="id" value="{{ row['user_id'] }}" type="hidden">
+		<input type="submit" value="Ekle">
+	</p>
+</form>
