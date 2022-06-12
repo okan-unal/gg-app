@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cert-checker
+  labels:
+    app: cc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cc
+  template:
+    metadata:
+      labels:
+        app: cc
+    spec:
+      containers:
+      - name: cert-checker
+        image: cert-checker:v1.0.0
+        ports:
+        - containerPort: 80
