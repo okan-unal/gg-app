@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: gg-app
-        image: liman.ordulu.com/ulak/app:test
+        image: IMAGE-URL
         imagePullPolicy: Always
         ports:
         - name: gg-app-tcp
